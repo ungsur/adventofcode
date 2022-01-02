@@ -1,12 +1,31 @@
-"""This script prompts a user to enter a message to encode or decode
- 3  using a classic Caeser shift substitution (3 letter shift)"""
+"""This is day 6 of advent of code"""
+
+
+def processiterations(fisharr: list, iterations: int):
+    """
+    here is my docstring
+    """
+    queuelen = len(fisharr)
+    fishcounter = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
+    for val in fisharr:
+        if fishcounter.get(val):
+            fishcounter[val] += 1
+        else:
+            fishcounter[val] = 1
+    print(fishcounter)
+    for _ in range(iterations):
+        for k, _ in fishcounter.items():
+            fishcounter[k] -= 1
+    print(fishcounter)
+    return queuelen
 
 
 def main():
     """
     here is my docstring
     """
-    pass
+    example = [3, 4, 3, 1, 2]
+    print(processiterations(example, 3))
 
 
 if __name__ == "__main__":
