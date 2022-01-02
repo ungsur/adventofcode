@@ -3,7 +3,8 @@
 
 def processiterations(fisharr: list, iterations: int):
     """
-    here is my docstring
+    process fisharray the provided iterations
+    and returns length of the final array
     """
     queuelen = len(fisharr)
     fishcounter = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
