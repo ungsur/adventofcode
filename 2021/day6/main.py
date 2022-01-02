@@ -1,5 +1,4 @@
 def processiterations(fisharr: list, n: int):
-    print(fisharr)
     queuelen = len(fisharr)
     fishcounter = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
     for val in fisharr:
@@ -8,7 +7,6 @@ def processiterations(fisharr: list, n: int):
         else:
             fishcounter[val] = 1
     print(fishcounter)
-
     for i in range(n):
         for k, v in fishcounter.items():
             fishcounter[k] -= 1
@@ -17,10 +15,10 @@ def processiterations(fisharr: list, n: int):
 
 
 def main():
-    iterations = 1
     example = [3, 4, 3, 1, 2]
-    print(processiterations(example, 3))
+    print("hi")
+    processiterations(example, 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
