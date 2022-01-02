@@ -1,13 +1,13 @@
-class Board: 
+class Board:
     boardserial = 1
+
     def __init__(self,  boardarr: list[list[int]]):
         self.boardarr = boardarr
         self.boardnum = Board.boardserial
         self.boardarrt = list(map(list, zip(*boardarr)))
         Board.boardserial += 1
-    
 
-    def mark(self, num):
+    def mark(self, num: int):
         for i, row in enumerate(self.boardarr):
             for j, column in enumerate(row):
                 if column == num:
@@ -23,8 +23,7 @@ class Board:
                 if all(element == 'X' for element in self.boardarrt[j][:]):
                     return self.boardnum, Board(self.boardarrt)
         return False
-    
-    
+
     def boardsum(self):
         total = 0
         for row in self.boardarr:
@@ -35,15 +34,14 @@ class Board:
                     total += col
         return total
 
-
     def __repr__(self):
-            return f'Board Number:{self.boardnum}, Board:  {self.boardarr}, BoardT: {self.boardarrt}'
+        return f'Board Number:{self.boardnum}, Board:  {self.boardarr}, BoardT: {self.boardarrt}'
 
 
 def process_input(filename):
     with open(filename) as fh:
         balls = fh.readline()
-        balls = (list(map(int,balls.strip().split(','))))
+        balls = (list(map(int, balls.strip().split(','))))
         boardsarr = fh.readlines()
     boardlist = []
     tmpboard = []
@@ -56,11 +54,12 @@ def process_input(filename):
                 boardlist.append(tmpboard)
                 tmpboard = []
         else:
-            tmpboard.append(list(map(int,boardsarr[i].strip().split())))
+            tmpboard.append(list(map(int, boardsarr[i].strip().split())))
         i += 1
     boardlist.append(tmpboard)
-    
+
     return balls, boardlist
+
 
 def play_bingo(balls, boardlist):
     for ball in balls:
@@ -69,6 +68,7 @@ def play_bingo(balls, boardlist):
             if board.check_winner():
                 return ball * board.boardsum()
     return False
+
 
 def play_bingo_part2(balls, boardlist):
     winnerlist = []
@@ -83,7 +83,8 @@ def play_bingo_part2(balls, boardlist):
                 winnersum.append(board.boardsum())
                 winnerball.append(ball)
     return winnersum[-1] * winnerball[-1]
-    
+
+
 def main():
     inputfile = "./input/input.txt"
     ballnums, boards = process_input(inputfile)
@@ -91,9 +92,8 @@ def main():
     blist = []
     for board in boards:
         blist.append(Board(board))
-    print('Part 1 answer: ', play_bingo(a,blist))
-    print('Part 2 answer: ', play_bingo_part2(a,blist))
-    
+    print('Part 1 answer: ', play_bingo(a, blist))
+    print('Part 2 answer: ', play_bingo_part2(a, blist))
 
 
 if __name__ == "__main__":
