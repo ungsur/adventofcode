@@ -1,7 +1,5 @@
 def main():
-    example = [1, 2, 3, 4, 5, 6]
-    print("hi")
-    print(example)
+    pass
 
 
 if __name__ == "__main__":
