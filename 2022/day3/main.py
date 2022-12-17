@@ -1,5 +1,5 @@
 '''advent of code day 3'''
-from collections import defaultdict
+
 
 def check(inputfile):
     '''check the thing'''
@@ -24,23 +24,34 @@ def check(inputfile):
 def find_groups(inputfile):
     '''check the groups'''
     total = 0
+    letterslist = []
+    lettersdict = {}
     with open(inputfile, encoding='UTF-8') as fh:
-        for i,line in enumerate(fh):
-            print(i,set(line))
-            arr = list(line)
-            if i % 3:
-                lettersdict = defaultdict(1)
-                for letter in arr:
-                    lettersdict['letter'] += 1
+        for i, line in enumerate(fh):
+            arr = list(set(line.strip()))
+            if i % 3 == 0:
+                lettersdict = {}
+            for letter in arr:
+                if lettersdict.get(letter):
+                    lettersdict[letter] += 1
                 else:
-                    lettersdict[letter] +=1
-                print(lettersdict)
+                    lettersdict[letter] = 1
+            if i % 3 == 2:
+                letterslist.append(list(lettersdict.keys())[list(lettersdict.values()).index(3)])
+    print(letterslist)
+    for letter in letterslist:
+        if letter.islower():
+            total += ord(letter)-96
+        else:
+            total += ord(letter)-38
     return total
+
 
 def main():
     '''the main func'''
     inputfile = 'input/example.txt'
     inputfile = 'input/input1.txt'
+    print(check(inputfile))
     print(find_groups(inputfile))
 
 
